@@ -134,7 +134,11 @@
   "Creates a new EnvironmentConfigRepository instance.
    Loads environment variables from .env file if present."
   []
-  (let [dotenv-instance (Dotenv/load)]
+  ;; Fly.io and other production deployments typically inject configuration
+  ;; via environment variables (no .env file present). We treat .env as optional.
+  (let [dotenv-instance (-> (Dotenv/configure)
+                            (.ignoreIfMissing)
+                            (.load))]
     (->EnvironmentConfigRepository dotenv-instance)))
 
 (defn create-environment-config-repository-with-dotenv

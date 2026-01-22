@@ -1,0 +1,21 @@
+# fly.toml app configuration file generated for lispinho on 2026-01-22T20:09:12Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'lispinho'
+primary_region = 'cdg'
+
+[env]
+  TEMP_DOWNLOAD_DIR = '/tmp/lispinho-downloads'
+  YT_DLP_PATH = 'yt-dlp'
+  YT_DLP_COOKIES_PATH = ''
+  YT_DLP_EXTRA_ARGS = ''
+  MAX_VIDEO_DURATION_MINUTES = '15'
+
+[build]
+
+[[vm]]
+  memory = '256mb'
+  cpus = 1
+  memory_mb = 256

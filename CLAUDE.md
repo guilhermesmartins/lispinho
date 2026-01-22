@@ -66,6 +66,10 @@ MAX_VIDEO_DURATION_MINUTES=15
 YT_DLP_COOKIES_PATH=/app/cookies.txt
 ```
 
+Note: in production platforms like Fly.io, you typically won't have a `.env` file.
+Lispinho treats `.env` as optional and will read configuration from real environment
+variables when the file is missing.
+
 ### YouTube Authentication / "Not a Bot" Challenges
 
 YouTube will sometimes return a verification page ("Sign in to confirm you’re not a bot").
