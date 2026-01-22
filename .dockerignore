@@ -1,0 +1,53 @@
+# Git
+.git
+.gitignore
+
+# IDE and editor files
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+*~
+
+# Environment files (secrets)
+.env.*
+!.env
+!.env.example
+
+# Build artifacts (will be rebuilt in container)
+target/
+classes/
+
+# Leiningen
+.lein-*
+.nrepl-port
+
+# Test artifacts
+test-results/
+coverage/
+
+# Documentation
+*.md
+docs/
+
+# Development files
+dev/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Docker files (don't need to copy themselves)
+Dockerfile*
+docker-compose*.yml
+.dockerignore

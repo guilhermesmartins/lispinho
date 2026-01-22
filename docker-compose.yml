@@ -1,0 +1,36 @@
+services:
+  lispinho:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lispinho-bot
+    environment:
+      # Required - Bot token from BotFather
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      # Optional - Override defaults if needed
+      - TEMP_DOWNLOAD_DIR=${TEMP_DOWNLOAD_DIR:-/tmp/lispinho-downloads}
+      - YT_DLP_PATH=${YT_DLP_PATH:-yt-dlp}
+      - YT_DLP_COOKIES_PATH=${YT_DLP_COOKIES_PATH:-}
+      - YT_DLP_EXTRA_ARGS=${YT_DLP_EXTRA_ARGS:-}
+      - MAX_VIDEO_DURATION_MINUTES=${MAX_VIDEO_DURATION_MINUTES:-15}
+      # Optional - Telegram API URL (for custom API servers)
+      - API_URL=${API_URL:-}
+      # Optional - AI features
+      - OPEN_AI_ENDPOINT=${OPEN_AI_ENDPOINT:-}
+      - OPEN_AI_TOKEN=${OPEN_AI_TOKEN:-}
+    restart: unless-stopped
+    # Limit resources
+    deploy:
+      resources:
+        limits:
+          memory: 768M
+        reservations:
+          memory: 256M
+    # Mount volume for persistent downloads (optional)
+    volumes:
+      - ./.env:/app/.env:ro
+      - ./cookies.txt:/app/cookies.txt
+      - lispinho-downloads:/tmp/lispinho-downloads
+
+volumes:
+  lispinho-downloads:
